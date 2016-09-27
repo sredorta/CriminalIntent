@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 
+// Added comment for github test
 public class CrimeActivity extends SingleFragmentActivity {
 
     @Override
