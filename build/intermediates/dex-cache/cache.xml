@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\sredorta\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.0\support-annotations-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.0_fbfec959d8e7eddaf9ec1896e178353f07749c59\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="7702e293ccd7ac4a2ec381e8bb1d0a3a091b555a">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_5fc4f1dd491bea2ac4df11f45ce93d72a79845df\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_4dff7db263adc5fc0f81ae25b1c980453b8ccb2b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.1_f513c0d8329295c8e4c27b748166552df59ec270\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.1_cbf0f2c2090accedae240aba10aaff37039655a4\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.0_ed1822f9d4096b64e96f3e5144d4bfd96c5809ff\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.1_02e16a735c53224a21f6dbd93a9ed2501cfc26f1\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.0_3e85ad505352477d76afe9358a678dd6c947c9aa\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_7e19da22cf5e372a7ea45ae3799573c7c779599d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c755536e5a100d9c76c8ea0b72f76c018f7a9de2">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.0_a741ba078fe5367a866bb1358fd5a7296afd2f62\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="12bb9ca8f634098f96c4c06b7c21a2d48a749e69">
+        <dex dex="C:\Users\sredorta\AndroidStudioProjects\CriminalIntent\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_cd79102a10afff0f1f8ccad23194268fa10bbd57\classes.dex" />
+    </item>
+
+</items>
