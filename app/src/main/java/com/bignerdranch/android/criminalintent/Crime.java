@@ -42,9 +42,7 @@ public class Crime {
     }
 
 
-
     public String getTitle() {
-
         return mTitle;
     }
 
