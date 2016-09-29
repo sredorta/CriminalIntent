@@ -1,11 +1,12 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-
+import java.util.Date;
 import java.util.UUID;
 
 /**
  * Created by sredorta on 9/19/2016.
  */
 public class CrimeFragment extends Fragment {
+    private static final String DIALOG_DATE="DialogDate";
     private static final String ARG_CRIME_ID = "crime_id";
+    private static final int REQUEST_DATE = 0;
+
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
@@ -64,8 +68,17 @@ public class CrimeFragment extends Fragment {
         });
         //Handle date button
         mDateButton = (Button)v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setEnabled(false);
+        UpdateDate();
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getActivity().getSupportFragmentManager();
+                DatePickerFragment dialog =  DatePickerFragment.newInstance(mCrime.getDate());
+                dialog.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
+
         //Handle checkbox
         mSolvedCheckBox = (CheckBox) v.findViewById(R.id.crime_solved);
         mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -75,5 +88,21 @@ public class CrimeFragment extends Fragment {
             }
         });
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        if (requestCode == REQUEST_DATE){
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCrime.setDate(date);
+            UpdateDate();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    private void UpdateDate() {
+        mDateButton.setText(mCrime.getDate().toString());
     }
 }
