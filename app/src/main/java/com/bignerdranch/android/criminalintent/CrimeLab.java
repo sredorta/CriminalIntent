@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.bignerdranch.android.criminalintent.database.CrimeDbSchema;
 
@@ -90,6 +91,11 @@ public class CrimeLab {
     public void addCrime(Crime c) {
         ContentValues values = getContentValues(c);
         mDatabase.insert(CrimeDbSchema.CrimeTable.NAME,null,values);
-
+    }
+    public void removeCrime(Crime c) {
+        String uuidString = c.getId().toString();
+        ContentValues values = getContentValues(c);
+        mDatabase.delete(CrimeDbSchema.CrimeTable.NAME, CrimeDbSchema.CrimeTable.Cols.UUID + " = ?", new String[] {uuidString});
+        //Toast.makeText(mContext, "Removed from SQLite db!", Toast.LENGTH_SHORT ).show();
     }
 }

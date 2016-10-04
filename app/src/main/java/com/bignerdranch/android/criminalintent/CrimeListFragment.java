@@ -24,7 +24,6 @@ import java.util.List;
  */
 public class CrimeListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
-
     private RecyclerView mCrimeRecyclerView;
     private CrimeAdapter mAdapter;
     private boolean mSubtitleVisible;
@@ -55,6 +54,10 @@ public class CrimeListFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_crime_list,menu);
         MenuItem subtitleItem = menu.findItem(R.id.menu_item_show_subtitle);
+        MenuItem removeItem = menu.findItem(R.id.menu_item_remove_crime);
+        //Do not show the removeItem as visible, only when one Crime is selected
+        removeItem.setVisible(false);
+
         if (mSubtitleVisible) {
              subtitleItem.setTitle(R.string.hide_subtitle);
         } else {
@@ -76,6 +79,8 @@ public class CrimeListFragment extends Fragment {
                 mSubtitleVisible = !mSubtitleVisible;
                 getActivity().invalidateOptionsMenu();
                 updateSubtitle();
+                return true;
+            case R.id.menu_item_remove_crime:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -107,16 +112,22 @@ public class CrimeListFragment extends Fragment {
         return view;
     }
     private void updateUI() {
+
         CrimeLab crimeLab = CrimeLab.get(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
-        if (mAdapter == null) {
-            mAdapter = new CrimeAdapter(crimes);
-            mCrimeRecyclerView.setAdapter(mAdapter);
-        } else {
-            mAdapter.setCrimes(crimes);
-            mAdapter.notifyDataSetChanged();
-            //mAdapter.notifyItemChanged();
-        }
+//        if (crimes.size()>0) {
+//            mTitleNoCrimes.setVisibility(View.INVISIBLE);
+            if (mAdapter == null) {
+                mAdapter = new CrimeAdapter(crimes);
+                mCrimeRecyclerView.setAdapter(mAdapter);
+            } else {
+                mAdapter.setCrimes(crimes);
+                mAdapter.notifyDataSetChanged();
+                //mAdapter.notifyItemChanged();
+            }
+//        } else {
+//            mTitleNoCrimes.setVisibility(View.VISIBLE);
+//        }
         updateSubtitle();
     }
     // Holder of RecycleViewer

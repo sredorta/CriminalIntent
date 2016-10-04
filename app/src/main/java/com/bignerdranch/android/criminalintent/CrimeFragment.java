@@ -9,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -44,11 +47,44 @@ public class CrimeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         //Make sure that onCreateOptiopnsMenu is called to delpoy ActionBar
+        setHasOptionsMenu(true);
         //mCrime = new Crime();
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
     }
 
+    //Define action bar when only one crime is visible
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_crime_list,menu);
+        MenuItem subtitleItem = menu.findItem(R.id.menu_item_show_subtitle);
+        MenuItem removeItem = menu.findItem(R.id.menu_item_remove_crime);
+        MenuItem addItem = menu.findItem(R.id.menu_item_new_crime);
+        //Do not show the removeItem as visible, only when one Crime is selected
+        removeItem.setVisible(true);
+        addItem.setVisible(false);
+        subtitleItem.setVisible(false);
+
+    }
+    //Answer ActionBar menu selection when remove is done
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_crime:
+                return true;
+            case R.id.menu_item_show_subtitle:
+                return true;
+            case R.id.menu_item_remove_crime:
+                //Toast.makeText(getActivity(), "Clicked remove!", Toast.LENGTH_SHORT ).show();
+                CrimeLab.get(getActivity()).removeCrime(mCrime);
+                getActivity().finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     @Override
     public void onPause() {
         super.onPause();
