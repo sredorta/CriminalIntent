@@ -32,7 +32,7 @@ public class CrimePagerActivity extends AppCompatActivity {
     @Override
     public void openOptionsMenu() {
         super.openOptionsMenu();
-        Toast.makeText( getApplicationContext(), "Options Menu opened", Toast.LENGTH_SHORT ).show();
+//        Toast.makeText( getApplicationContext(), "Options Menu opened", Toast.LENGTH_SHORT ).show();
     }
 
     @Override
