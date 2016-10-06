@@ -5,9 +5,13 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ShareCompat;
@@ -25,10 +29,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bignerdranch.android.criminalintent.database.CrimeDbSchema;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.Date;
 import java.util.UUID;
@@ -42,14 +48,19 @@ public class CrimeFragment extends Fragment {
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_CONTACT = 1;
     private static final int CALL_CONTACT = 2;
+    private static final int REQUEST_PHOTO = 3;
+
 
 
     private Crime mCrime;
+    private File mPhotoFile;
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
     private Button mReportButton;
     private Button mSuspectButton;
+    private ImageButton mPhotoButton;
+    private ImageView mPhotoView;
 
 
     //Method that is like a constructor but adds in the bundle an argument
@@ -69,6 +80,7 @@ public class CrimeFragment extends Fragment {
         //mCrime = new Crime();
         UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.get(getActivity()).getCrime(crimeId);
+        mPhotoFile = CrimeLab.get(getActivity()).getPhotoFile(mCrime);
     }
 
     //Define action bar when only one crime is visible
@@ -205,6 +217,25 @@ public class CrimeFragment extends Fragment {
                 }
             }
         });
+        //Handle photos button
+        mPhotoButton = (ImageButton) v.findViewById(R.id.crime_camera);
+        final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
+        mPhotoButton.setEnabled(canTakePhoto);
+
+        if (canTakePhoto) {
+            Uri uri = Uri.fromFile(mPhotoFile);
+            captureImage.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        }
+        mPhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(captureImage, REQUEST_PHOTO);
+            }
+        });
+
+        mPhotoView   = (ImageView)   v.findViewById(R.id.crime_photo);
+        updatePhotoView();
 
         return v;
     }
@@ -282,7 +313,8 @@ public class CrimeFragment extends Fragment {
             }
         } else if (requestCode == CALL_CONTACT && data != null) {
             //Uri callUri = data.getData();
-
+        } else if (requestCode == REQUEST_PHOTO) {
+            updatePhotoView();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -312,5 +344,16 @@ public class CrimeFragment extends Fragment {
 
         String report = getString(R.string.crime_report, mCrime.getTitle(), dateString, solvedString, suspect);
         return report;
+    }
+    // Updates photoView with Scaled image
+    private void updatePhotoView() {
+        if (mPhotoFile == null || !mPhotoFile.exists()) {
+            mPhotoView.setImageResource(R.drawable.ic_menu_camera);
+            mPhotoView.setColorFilter(Color.RED);
+        } else {
+            mPhotoView.clearColorFilter();
+            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            mPhotoView.setImageBitmap(bitmap);
+        }
     }
 }
