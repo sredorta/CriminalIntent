@@ -44,11 +44,13 @@ import java.util.UUID;
  */
 public class CrimeFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
+    private static final String DIALOG_PHOTO = " DialogPhoto";
     private static final String ARG_CRIME_ID = "crime_id";
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_CONTACT = 1;
     private static final int CALL_CONTACT = 2;
     private static final int REQUEST_PHOTO = 3;
+    private static final int SHOW_PHOTO = 4;
 
 
 
@@ -354,6 +356,17 @@ public class CrimeFragment extends Fragment {
             mPhotoView.clearColorFilter();
             Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
             mPhotoView.setImageBitmap(bitmap);
+            //Add onClock listener to open a Dialog with the larger image
+            mPhotoView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager manager = getActivity().getSupportFragmentManager();
+                    PhotoFragment dialog = PhotoFragment.newInstance(mPhotoFile);
+                    dialog.setTargetFragment(CrimeFragment.this, SHOW_PHOTO);
+                    dialog.show(manager, DIALOG_PHOTO);
+                }
+            });
         }
+
     }
 }

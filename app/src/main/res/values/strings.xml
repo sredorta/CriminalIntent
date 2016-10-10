@@ -25,5 +25,5 @@
     <string name="send_report">Send crime report via</string>
     <string name="crime_call_no_suspect">No suspect defined for this crime !</string>
     <string name="crime_call_no_phone">No phone defined for contact: %1$s</string>
-
+    <string name="photo_title">Photo of the crime !</string>
 </resources>
